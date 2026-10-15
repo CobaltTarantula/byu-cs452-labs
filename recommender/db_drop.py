@@ -1,15 +1,22 @@
 ## This script is used to drop the tables in the database
 
+import psycopg2
 import os
 from dotenv import load_dotenv
-import psycopg2
 
 load_dotenv()
 
-CONNECTION = None # paste connection string here or read from .env file
+CONNECTION = os.getenv("DATABASE_URL")
 
-DROP_TABLE = "DROP TABLE podcast, podcast_segment"
+DROP_TABLE = "DROP TABLE IF EXISTS podcast_segment, podcast CASCADE"
 
-with psycopg2.connect(CONNECTION) as conn:
-    cursor = conn.cursor()
-    cursor.execute(DROP_TABLE)
+
+def main() -> None:
+    if not CONNECTION:
+        raise SystemExit("Set DATABASE_URL in your environment or .env file first.")
+    with psycopg2.connect(CONNECTION) as conn, conn.cursor() as cursor:
+        cursor.execute(DROP_TABLE)
+
+
+if __name__ == "__main__":
+    main()

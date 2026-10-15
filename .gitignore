@@ -5,3 +5,8 @@
 __pycache__
 .env
 *.zip
+/data/
+/.pgdata/
+/.venv/
+/results.md
+/results.pdf

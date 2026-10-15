@@ -1,4 +1,6 @@
-datasets==2.20.0
-python-dotenv==1.0.1
-psycopg2==2.9.9
-pgcopy==1.6.0
+datasets>=2.20,<4
+numpy>=2.2
+python-dotenv>=1.0,<2
+psycopg2-binary>=2.9,<3
+reportlab>=4,<5
+pgserver==0.0.9; platform_system == "Windows"
